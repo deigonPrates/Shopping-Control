@@ -17,7 +17,7 @@ function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr><tbody>';
 
     for(var key in list){
-        table += '<tr><td>'+formatText(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatNumber(list[key].value)+'</td><td><button onclick="updateData('+key+');" class="btn btn-default">Edit</button> | Delete</td></tr>';
+        table += '<tr><td>'+formatText(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatNumber(list[key].value)+'</td><td><button onclick="updateData('+key+');" class="btn btn-default">Edit</button>   <button onclick="deleteData('+key+');" class="btn btn-default">Delete</button></td></tr>';
     }
     table += '</tbody>';
 
@@ -74,7 +74,22 @@ function saveData() {
    resetForm();
    setList(list);
 }
+function deleteData(id) {
+    if(confirm("Delete this item?")){
+        if(id === list.length - 1){
+            list.pop();
+        }else if(id === 0){
+            list.shift();
+        }else{
+            var fist = list.slice(0, id);
+            var last = list.slice(id + 1);
 
+            list = fist.concat(last);
+        }
+        setList(list);
+    }
+    
+}
 /*
 console.log(getTotal(list));
 */
