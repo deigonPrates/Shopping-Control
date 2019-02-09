@@ -17,7 +17,7 @@ function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr><tbody>';
 
     for(var key in list){
-        table += '<tr><td>'+formatText(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatNumber(list[key].value)+'</td><td>Edit | Delete</td></tr>';
+        table += '<tr><td>'+formatText(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatNumber(list[key].value)+'</td><td><button onclick="updateData('+key+');" class="btn btn-default">Edit</button> | Delete</td></tr>';
     }
     table += '</tbody>';
 
@@ -44,6 +44,24 @@ function addData() {
     list.unshift({"desc":desc,"amount":amount,"value":value});
     setList(list);
 }
+function updateData(id) {
+    var obj = list[id];
+    document.getElementById("desc").value = obj.desc;
+    document.getElementById("amount").value = obj.amount;
+    document.getElementById("value").value = obj.value;
+
+    document.getElementById("btnUpdate").style.display = "inline-block";
+    document.getElementById("btnAdd").style.display = "none";
+}
+function resetForm() {
+    document.getElementById("desc").value = "";
+    document.getElementById("amount").value = "";
+    document.getElementById("value").value = "";
+
+    document.getElementById("btnUpdate").style.display = "none";
+    document.getElementById("btnAdd").style.display = "inline-block";
+}
+
 
 /*
 console.log(getTotal(list));
