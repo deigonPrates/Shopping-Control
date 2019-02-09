@@ -17,13 +17,25 @@ function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr><tbody>';
 
     for(var key in list){
-        table += '<tr><td>'+list[key].desc+'</td><td>'+list[key].amount+'</td><td>'+list[key].value+'</td><td>Edit | Delete</td></tr>';
+        table += '<tr><td>'+formatText(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatNumber(list[key].value)+'</td><td>Edit | Delete</td></tr>';
     }
     table += '</tbody>';
 
     document.getElementById('listTable').innerHTML = table;
 }
 setList(list);
+
+function formatText(text) {
+    var str = text.toLowerCase();
+    str = str.charAt(0).toUpperCase() + str.slice(1);
+    return str;
+}
+function formatNumber(number) {
+    var str = parseFloat(number).toFixed(2) + "";
+    str = str.replace(".",",");
+    str = '$ '+ str;
+    return str;
+}
 
 /*
 console.log(getTotal(list));
