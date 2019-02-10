@@ -16,7 +16,7 @@ function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr><tbody>';
 
     for(var key in list){
-        table += '<tr><td>'+formatText(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatNumber(list[key].value)+'</td><td><button onclick="updateData('+key+');" class="btn btn-default">Edit</button>   <button onclick="deleteData('+key+');" class="btn btn-default">Delete</button></td></tr>';
+        table += '<tr><td>'+formatText(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatNumber(list[key].value)+'</td><td><button onclick="updateData('+key+');" class="btn btn-warning">Edit</button>   <button onclick="deleteData('+key+');" class="btn btn-danger">Delete</button></td></tr>';
     }
     table += '</tbody>';
 
