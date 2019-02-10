@@ -10,7 +10,7 @@ function getTotal(list){
     for(var key in list){
         total += list[key].value * list[key].amount;
     }
-    document.getElementById("totalValue").value = formatNumber(total);
+    document.getElementById("totalValue").innerHTML = formatNumber(total);
 }
 function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr><tbody>';
