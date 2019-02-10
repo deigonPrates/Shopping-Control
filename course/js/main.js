@@ -37,6 +37,9 @@ function formatNumber(number) {
     return str;
 }
 function addData() {
+    if(!validation()){
+        return;
+    }
     var desc = document.getElementById("desc").value;
     var amount = document.getElementById("amount").value;
     var value = document.getElementById("value").value;
@@ -45,6 +48,9 @@ function addData() {
     setList(list);
 }
 function updateData(id) {
+    if(!validation()){
+        return;
+    }
     var obj = list[id];
     document.getElementById("desc").value = obj.desc;
     document.getElementById("amount").value = obj.amount;
@@ -89,6 +95,35 @@ function deleteData(id) {
         setList(list);
     }
     
+}
+function validation() {
+    document.getElementById("alert").style.display = "none";
+    var desc = document.getElementById("desc").value;
+    var amount = document.getElementById("amount").value;
+    var value = document.getElementById("value").value;
+    var errors = "";
+
+    if(desc === ""){
+        errors += "<p>Description not null</p>";
+    }
+    if(amount === ""){
+        errors += "<p>Amount not null</p>";
+    }else if(amount != parseInt(amount)){
+        errors += "<p>Amount is not invalid</p>";
+    }
+    if(value === ""){
+        errors += "<p>Value not null";
+    }else if(value != parseFloat(value)){
+        errors += "<p>Value is notinvalid</p>";
+    }
+
+    if(errors === ""){
+        return 1;
+    }else{
+        document.getElementById("alert").style.display = "inline-block";
+        document.getElementById("alert").innerHTML = ' <div id="divAlert"class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">'+errors+'</div>';
+        return 0;
+    }
 }
 /*
 console.log(getTotal(list));
