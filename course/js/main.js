@@ -21,6 +21,7 @@ function setList(list){
     table += '</tbody>';
 
     document.getElementById('listTable').innerHTML = table;
+    setDataStorage(list);
     getTotal(list);
 }
 function formatText(text) {
@@ -131,7 +132,19 @@ function deleteAll(){
         setList();
     }
 }
-setList(list);
+function setDataStorage(list){
+    var jsonStr = JSON.stringify(list);
+    localStorage.setItem("list",jsonStr);
+}
+function initDataSotrage(){
+    var listStorage = localStorage.getItem("list");
+
+    if(listStorage){
+        list = JSON.parse(listStorage);
+    }
+    setList(list);
+}
+initDataSotrage();
 
 
 /*
