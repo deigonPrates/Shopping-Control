@@ -32,7 +32,12 @@
                 <button onclick="saveData();" class="btn btn-success">Save</button>
                 <button onclick="resetForm();" class="btn btn-danger">Cancel</button>
             </span>
-            <button id="btnAdd" onclick="addData();" class="btn btn-success">Add</button>
+
+            <span>
+                <button id="btnAdd" onclick="addData();" class="btn btn-success">Add</button>
+                <button onclick="resetForm();" class="btn btn-warning">Clear</button>
+                <button onclick="deleteAll();" class="btn btn-danger">Delete All</button>
+            </span>
         </div>
         <table id="listTable" class="table">
         </table>

@@ -125,7 +125,15 @@ function validation() {
         return 0;
     }
 }
+function deleteAll(){
+    if(confirm("Delete this list all?")){
+        list = [];
+        setList();
+    }
+}
 setList(list);
+
+
 /*
 console.log(getTotal(list));
 */
