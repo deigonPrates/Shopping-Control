@@ -4,14 +4,13 @@ var list = [
     {"desc":"beer","amount": "12", "value": "1.99"},
     {"desc":"meat","amount": "1", "value": "15.00"},
 ];
-
-function getTotal(list) {
+function getTotal(list){
     var total = 0;
 
     for(var key in list){
         total += list[key].value * list[key].amount;
     }
-    return total;
+    document.getElementById("totalValue").value = formatNumber(total);
 }
 function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr><tbody>';
@@ -22,9 +21,8 @@ function setList(list){
     table += '</tbody>';
 
     document.getElementById('listTable').innerHTML = table;
+    getTotal(list);
 }
-setList(list);
-
 function formatText(text) {
     var str = text.toLowerCase();
     str = str.charAt(0).toUpperCase() + str.slice(1);
@@ -48,9 +46,6 @@ function addData() {
     setList(list);
 }
 function updateData(id) {
-    if(!validation()){
-        return;
-    }
     var obj = list[id];
     document.getElementById("desc").value = obj.desc;
     document.getElementById("amount").value = obj.amount;
@@ -62,6 +57,8 @@ function updateData(id) {
 
 }
 function resetForm() {
+    document.getElementById("alert").style.display = "none";
+
     document.getElementById("desc").value = "";
     document.getElementById("amount").value = "";
     document.getElementById("value").value = "";
@@ -71,6 +68,9 @@ function resetForm() {
     document.getElementById("inputIDUpdate").innerHTML = "";
 }
 function saveData() {
+    if(!validation()){
+        return;
+    }
    var id = document.getElementById("inputID").value;
    var desc = document.getElementById("desc").value;
    var amount = document.getElementById("amount").value;
@@ -125,6 +125,7 @@ function validation() {
         return 0;
     }
 }
+setList(list);
 /*
 console.log(getTotal(list));
 */
